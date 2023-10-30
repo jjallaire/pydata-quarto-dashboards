@@ -1,7 +1,305 @@
 ---
-title: "pydata-quarto-dashboards"
+title: "Dashboards with Jupyter<br/> and Quarto"
+author: "J.J. Allaire --- Founder & CEO, Posit"
+title-slide-attributes:
+  data-background-color: "#eef3f8"
+  data-background-image: "images/bg-logo.png"
+  data-background-size: contain
+format: 
+  revealjs:
+    css: styles.css
+    code-line-numbers: false
+    slide-number: c/t
+    width: 1350  
+    height: 759.375
+    menu: false
+    pdf-separate-fragments: true
+    theme: [default, theme.scss]
+bibliography: references.bib
+suppress-bibliography: true
+# notebook: open -na Google\ Chrome --args --window-size=912,1060 --new-window
+# output: open -na Google\ Chrome --args --window-size=838,995 --new-window --user-data-dir=/Users/jjallaire/Documents/Chrome-Output
 ---
 
-## Quarto
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Hello!
+
+::: incremental
+-  J.J. Allaire: Founder & CEO of Posit, PBC
+
+-  RStudio [⥵]{style="font-size: 1.5em;"} Posit (July 2022)
+
+-  Why? Become a multi-lingual data science tools company
+
+-  How? Open source and commercial software for PyData
+
+-  Early in the journey, but have made lots of investments already
+
+-  Today I'll share some of our work and talk about what's next
+
+:::
+
+## Overview
+
+-  What is Quarto?
+
+-  Introducing Quarto Dashboards
+
+-  Dashboards with Jupyter in Depth
+     
+-  Posit and Python: History and Future
+
+# ![](images/icon-intro.svg){.title-icon} Quarto Basics
+
+
+## What is Quarto? --- <https://quarto.org>
+
+::: columns
+
+::: column
+An open-source scientific and technical publishing system that builds on standard markdown with features essential for scientific communication.
+
+- Pandoc Markdown
+
+- Jupyter Kernels
+
+- Dozens of Output Formats 
+
+- Specialized Project Types
+:::
+
+::: column
+![](images/what-is-quarto.png){height="630px"}
+:::
+
+:::
+
+## How does Quarto work? {.nostretch}
+
+![](images/ipynb-how-it-works.png){style="margin-left: 35px;" width="80%"}
+
+-   Computations: [Jupyter](https://jupyter.org)[^1]
+-   Markdown: [Pandoc](https://pandoc.org) w/ many enhancements
+-   Output: Documents, presentations, websites, books, blogs
+
+[^1]: [Knitr](https://yihui.name/knitr/) and [ObservableJS](https://observablehq.com/@observablehq/observable-javascript) also supported.
+
+## Render Notebook to HTML (default options) {.demo}
+
+{{< demo basics >}}
+
+## Render Notebook to HTML (document level options) {.demo}
+
+{{< demo doc-options >}}
+
+## Render Notebook to HTML (document and cell level options) {.demo}
+
+{{< demo cell-options 2 >}}
+
+## Render Notebook to PDF [--- <https://quarto.org/docs/output-formats/pdf-basics.html>]{.web} {.demo}
+
+{{< demo pdf >}}
+
+## Render Notebook to Revealjs [--- <https://quarto.org/docs/presentations/revealjs/>]{.web} {.demo}
+
+{{< demo presentation >}}
+
+# ![](images/icon-notebooks.svg){.title-icon} Workflow {#workflow}
+
+## Render and Preview
+
+Render to output formats:
+
+``` bash
+# ipynb notebook
+quarto render notebook.ipynb
+quarto render notebook.ipynb --to docx
+
+# plain text qmd
+quarto render notebook.qmd 
+quarto render notebook.qmd --to pdf
+```
+
+Live preview server (re-render on save):
+
+``` bash
+# ipynb notebook
+quarto preview notebook.ipynb
+quarto preview notebook.ipynb --to docx
+
+# plain text qmd
+quarto preview notebook.qmd
+quarto preview notebook.qmd --to pdf
+```
+
+##  {.no-line background-image="images/jupyterlab.png" background-size="contain"}
+
+## Plain Text Notebooks w/`.qmd` Files {.no-line}
+
+::: {layout="[[40,50]]"}
+::: smaller
+::: {style="padding-top:0.65em;"}
+```` {.markdown filename="penguins.qmd" style="overflow-y: hidden" code-line-numbers="|1-7|9-16|18-20|22-31|23-24"}
+---
+title: "Palmer Penguins"
+author: Norah Jones
+date: March 12, 2023  
+format: html
+jupyter: python3
+---
+
+```{{python}}
+#| echo: false
+
+import pandas as pd
+df = pd.read_csv("palmer-penguins.csv") 
+df = df[["species", "island", "year", \
+         "bill_length_mm", "bill_depth_mm"]]
+```
+
+## Exploring the Data
+
+See @fig-bill-sizes for an exploration of bill sizes.
+
+```{{python}}
+#| label: fig-bill-sizes
+#| fig-cap: Bill Sizes by Species
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+g = sns.FacetGrid(df, hue="species", height=3)
+g.map(plt.scatter, "bill_length_mm", "bill_depth_mm") \
+  .add_legend()
+```
+````
+:::
+:::
+
+-   Editable with any text editor (extensions for VS Code, Neovim, and Emacs)
+
+-   Cells always run in the same order
+
+-   Integrates well with version control
+
+-   Cache output with Jupyter Cache or Quarto freezer
+
+-   Lots of pros and cons visa-vi traditional `.ipynb` format/editors, use the right tool for each job
+:::
+
+
+## Rendering Pipeline
+
+Notebook workflow (no execution occurs by default):
+
+![](images/ipynb-how-it-works.png){width="63%"}
+
+Plain text workflow (`.qmd` =\> `.ipynb` then execute cells):
+
+![](images/qmd-how-it-works.png){width="80%"}
+
+
+
+# ![](images/icon-narratives.svg){.title-icon} Dashboards
+
+
+
+
+
+# ![](images/icon-under-the-hood.svg){.title-icon} Posit and Python
+
+## Posit, PBC
+
+
+::: columns
+::: {.column width="50%"}
+Founded 14 years ago to create open source software for data science.
+
+Posit is a [Public Benefit Corporation](https://en.wikipedia.org/wiki/Benefit_corporation) with a mission to create free and open source software for *data science*, *scientific research*, and *technical communication*.
+
+This is built into our charter, and our directors and officers have a fiduciary duty to pursue these public benefits along with balancing the needs of all our stakeholders.
+:::
+
+::: {.column width="50%"}
+![](images/posit-b-corp.png){style="margin-left: 1em" width="80%"}
+![](images/posit-b-impact.png){style="margin-left: 1em" width="80%"}
+:::
+:::
+
+## Posit Incentives
+
+::: {.incremental}
+-   Posit is an independent company and is committed to always being one
+
+-   Corporate control lies *within the company* (not with outside investors)
+
+-   Our imperative is not *growth at all costs* but rather to build something that is organically sustainable and still here fulfilling its mission in 100 years
+
+-   Our core aspiration is to be a durable, trustworthy provider of open source software for science.
+:::
+
+
+## Code First Data Science
+
+::: incremental
+-  _Code First Data Science_ means doing flexible, iterative, re-usable, inspectable, and reproducible data science with code.
+
+-   This in contrast to many BI Tools which suffer from:
+
+    ::: {.nonincremental}
+    - No single source of truth
+    - Difficulty tracking changes and auditing work
+    - Awkard to extend and reproduce work
+    - Constraints on how you analyze your data and present insights
+    :::
+
+-   Our hope is to make the most open, flexible, and powerful way of doing data science as straightforward and seamless as possible. 
+:::
+
+
+## PyData Projects
+
+- Quarto
+- Shiny
+- vetiver
+- quartodoc
+- suiba
+- plotnine
+
+- NumFOCUS
+- Notebooks Now
+
+## What Next?
+
+::: incremental
+-  Continue working on these and other open source packages (all of our major open source initiatives are now multi-language)
+
+-  Invest in PyData tools ecosystem (already have Quarto and Shiny extensions for Jupyter and VS Code)
+
+-   Work collaboratively with the Python community to realize the potential of code first data science.
+   
+    ::: nonincremental
+    - What works well that we should build on? 
+    - What needs to be better integrated? 
+    - What are the frustrations and failure modes?
+    :::
+
+:::
+
+
+
+## Thank You!
+
+### Slides: <https://jjallaire.quarto.pub/pydata-quarto-dashboards/> {style="margin-top: 1em; font-size: 1.2em;"}
+
+### Resources: {style="margin-top: 1.1em;"}
+
+::: border-0
+|                 |                                              |
+|-----------------|----------------------------------------------|
+| About Quarto | <https://quarto.org/>                        |
+| Quarto Dashboards      | <https://quarto.org/docs/dashboards/>             |
+| Quarto v1.4 Pre-Release      | <https://quarto.org/docs/download/prerelease>             |
+| Shiny for Python | <https://shiny.posit.co/py/> |
+:::
+
+### Questions? {style="margin-top: .9em;"}
