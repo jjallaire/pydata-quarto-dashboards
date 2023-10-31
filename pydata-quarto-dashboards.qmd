@@ -189,7 +189,53 @@ Plain text workflow (`.qmd` =\> `.ipynb` then execute cells):
 
 ![](images/qmd-how-it-works.png){width="80%"}
 
-# ![](images/icon-narratives.svg){.title-icon} Dashboards
+# ![](images/icon-narratives.svg){.title-icon} Quarto Dashboards
+
+A new output format for easily creating\
+dashboards from Jupyter Notebooks
+
+##  {.no-line background-image="images/dashboards/customer-churn.png" background-size="contain"}
+
+##  {.no-line background-image="images/dashboards/mynorfolk.png" background-size="contain"}
+
+##  {.no-line background-image="images/dashboards/labor.png" background-size="contain"}
+
+##  {.no-line background-image="images/dashboards/earthquakes.png" background-size="contain"}
+
+##  {.no-line background-image="images/dashboards/model-card.png" background-size="contain"}
+
+##  {.no-line background-image="images/dashboards/shiny-penguins.png" background-size="contain"}
+
+##  {.no-line background-image="images/dashboards/gapminder.png" background-size="contain"}
+
+## Notebook ➝ Dashboard
+
+::: columns
+
+::: column
+![](images/demo-gapminder-notebook-1.png){.demo-notebook}
+:::
+
+::: column
+&nbsp;
+:::
+
+
+:::
+
+## Notebook ➝ Dashboard
+
+{{< demo gapminder-notebook >}}
+
+
+:::
+
+## Notebook ➝ Dashboard
+
+{{< demo gapminder-notebook-data >}}
+
+:::
+
 
 # ![](images/icon-under-the-hood.svg){.title-icon} Posit and Python
 
