@@ -15,8 +15,6 @@ format:
     menu: false
     pdf-separate-fragments: true
     theme: [default, theme.scss]
-bibliography: references.bib
-suppress-bibliography: true
 # notebook: open -na Google\ Chrome --args --window-size=912,1060 --new-window
 # output: open -na Google\ Chrome --args --window-size=838,995 --new-window --user-data-dir=/Users/jjallaire/Documents/Chrome-Output
 ---
