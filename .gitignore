@@ -2,3 +2,5 @@
 *.html
 *_files/
 .DS_Store
+
+/.luarc.json
