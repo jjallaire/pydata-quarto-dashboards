@@ -211,22 +211,18 @@ dashboards from Jupyter Notebooks
 ## Notebook ➝ Dashboard
 
 ::: columns
-
 ::: column
 ![](images/demo-gapminder-notebook-1.png){.demo-notebook}
 :::
 
 ::: column
-&nbsp;
+ 
 :::
-
-
 :::
 
 ## Notebook ➝ Dashboard
 
 {{< demo gapminder-notebook >}}
-
 
 :::
 
@@ -236,8 +232,36 @@ dashboards from Jupyter Notebooks
 
 :::
 
+## Dashboard Components
 
-# ![](images/icon-under-the-hood.svg){.title-icon} Posit and Python
+::: incremental
+1)  **Navigation Bar and Sidebar** --- Icon, title, and author along with links to sub-pages (if more than one page is defined). Sidebars are used to present inputs within interactive dashboards.
+
+2)  **Pages, Rows, Columns, and Tabsets** --- Pages, rows and columns are defined using markdown headings (with optional attributes to control height, width, etc.). Tabsets can be used to further divide content within a row or column.
+
+3)  **Cards (Plots, Tables, Value Boxes, Text)** --- Cards are containers for cell outputs and free form markdown text. The content of cards typically maps to *cells* in your notebook or source document.
+:::
+
+::: fragment
+*All of these components can be authored and customized within notebook UI*
+:::
+
+## Dashboard Deployment
+
+Dashboards are typically just static HTML pages so can be deployed to any web server or web host.
+
+|               |                                                                                          |
+|-----------------------|-------------------------------------------------|
+| Static        | [Rendered a single time (e.g. when underlying data won't ever change)]{.fragment}        |
+| Scheduled     | [Rendered on a schedule (e.g. via `cron` job) to accommodate changing data.]{.fragment}  |
+| Parameterized | [Variations of static or scheduled dashboards based on parameters.]{.fragment}           |
+| Interactive   | [Fully interactive dashboard using Shiny (requires a server for deployment).]{.fragment} |
+
+: {tbl-colwidths=\[35,65\]}
+
+## ![](images/icon-under-the-hood.svg){.title-icon}
+
+# Posit and Python
 
 ## Posit, PBC
 
