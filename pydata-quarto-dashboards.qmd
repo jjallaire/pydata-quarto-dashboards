@@ -248,10 +248,213 @@ dashboards from Jupyter Notebooks
 *All of these components can be authored and customized within notebook UI or plain text qmd.*
 :::
 
-## Demonstrate all of the components
+## Navigation and Pages
 
 
 
+
+## Plots {.component-slide}
+
+::: columns
+
+::: {.column .fragment .smaller}
+[plotly](https://plotly.com/python/)
+````python
+```{{python}}
+#| title: GDP and Life Expectancy
+import plotly.express as px
+df = px.data.gapminder()
+px.scatter(
+  df, x="gdpPercap", y="lifeExp", 
+  animation_frame="year", animation_group="country",
+  size="pop", color="continent", hover_name="country", 
+  facet_col="continent", log_x=True, size_max=45, 
+  range_x=[100,100000], range_y=[25,90]
+)
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/plotly-interactive.png)
+:::
+
+:::
+
+
+::: columns
+
+::: {.column .fragment .smaller}
+[ipyleaflet](https://ipyleaflet.readthedocs.io)
+````python
+```{{python}}
+#| title: "World Map"
+#| padding: 0px
+from ipyleaflet import Map, basemaps, basemap_to_tiles
+Map(basemap=basemap_to_tiles(basemaps.OpenStreetMap.Mapnik),
+    center=(48.204793, 350.121558), zoom=2)
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/leaflet-card-title-padding.png)
+:::
+
+:::
+
+
+## Tables {#component-tables .component-slide}
+
+::: columns
+
+::: {.column .fragment}
+[tabulate](https://pypi.org/project/tabulate/)
+
+````python
+```{{python}}
+from tabulate import tabulate
+from IPython.display import Markdown
+Markdown(tabulate(penguins, showindex=False)}
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/tabulate.png)
+:::
+
+:::
+
+::: columns
+
+::: {.column .fragment}
+[itables](https://pypi.org/project/itables/)
+
+````python
+```{{python}}
+from itables import show
+show(penguins)
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/itables-scrolling.png)
+:::
+
+:::
+
+```{=html}
+<style type="text/css">
+.component-slide .column > p {
+  margin-top: 0;
+}
+.component-slide .column > p > img {
+  margin-top: -8px;
+}
+#component-tables .column > div.sourceCode {
+  margin-top: 30px;
+}
+</style>
+```
+
+## Value Boxes {#value-box-component .component-slide}
+
+::: columns
+
+::: {.column .fragment width="45%"}
+````{.python .pymd code-line-numbers="|4-8|15-17"}
+## Row
+
+```{{python}}
+#| component: valuebox
+#| title: "Current Price"
+dict(icon = "currency-dollar",
+     color = "secondary",
+     value = get_price(data))
+```
+
+```{{python}}
+#| component: valuebox
+#| title: "Change"
+change = get_change(data)
+dict(value = change['amount'],
+     icon = change['icon'],
+     color = change['color']) 
+```
+
+```{{python}}
+#| component: valuebox
+#| title: "Percent Change"
+dict(icon = "percent",
+     color = "light",
+     value = change['percent']) 
+```
+````
+:::
+
+::: {.column .fragment width="55%"}
+![](images/value-box-app.png){.border width="90%"}
+:::
+
+
+:::
+
+```{=html}
+<style type="text/css">
+#value-box-component pre.sourceCode code {
+  max-height: 750px;
+}
+</style>
+```
+
+## Text Content {.component-slide}
+
+::: columns
+
+::: {.column .fragment}
+````{.python .pymd}
+## Column
+
+```{{python}}
+#| title: Population
+px.area(df, x="year", y="pop", 
+        color="continent", 
+        line_group="country")
+```
+
+```{{python}}
+#| title: Life Expectancy
+px.line(df, x="year", y="lifeExp", 
+        color="continent", 
+        line_group="country")
+```
+
+::: {.card}
+Gapminder combines data from multiple sources
+into unique coherent time-series that can’t be
+found elsewhere. Learn more about the Gampminder
+dataset at <https://www.gapminder.org/data/>.
+:::
+````
+:::
+
+::: {.column .fragment}
+![](images/text-content-column.png){width="85%"}
+:::
+
+:::
+
+
+## Expanding Cards
+
+Cards provide an **Expand** button which appears at bottom right on hover:
+
+![](images/expanding-cards.png)
+
+
+##  {.no-line background-image="images/expanding-cards-expanded.png" background-size="contain"}
 
 ## Dashboard Deployment
 
@@ -265,7 +468,7 @@ Dashboards are typically just static HTML pages so can be deployed to any web se
 </colgroup>
 <tbody>
 <tr class="odd fragment">
-<td><Static</td>
+<td>Static</td>
 <td><span>Rendered a single time (e.g.&nbsp;when underlying data won’t ever change)</span></td>
 </tr>
 <tr class="even fragment">
@@ -449,7 +652,7 @@ pip install git+https://github.com/quarto-dev/quarto-cli
 
 ### Slides {style="margin-top: 0.4em; font-size: 1em;"}
 
-<https://jjallaire.quarto.pub/pydata-quarto-dashboards/>  
+<https://jjallaire.github.io/pydata-quarto-dashboards/>  
 
 
 
