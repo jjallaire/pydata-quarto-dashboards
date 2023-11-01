@@ -232,19 +232,26 @@ dashboards from Jupyter Notebooks
 
 :::
 
+
+
 ## Dashboard Components
 
 ::: incremental
-1)  **Navigation Bar and Sidebar** --- Icon, title, and author along with links to sub-pages (if more than one page is defined). Sidebars are used to present inputs within interactive dashboards.
+1)  **Navigation Bar and Pages** --- Icon, title, and author along with links to sub-pages (if more than one page is defined). 
 
-2)  **Pages, Rows, Columns, and Tabsets** --- Pages, rows and columns are defined using markdown headings (with optional attributes to control height, width, etc.). Tabsets can be used to further divide content within a row or column.
+2)  **Sidebars, Rows, Columns, and Tabsets** --- Rows and columns using markdown heading (with optional attributes to control height, width, etc.). Sidebars for interactive inputs. Tabsets to further divide content.
 
-3)  **Cards (Plots, Tables, Value Boxes, Text)** --- Cards are containers for cell outputs and free form markdown text. The content of cards typically maps to *cells* in your notebook or source document.
+3)  **Cards (Plots, Tables, Value Boxes, Content)** --- Cards are containers for cell outputs and free form markdown text. The content of cards typically maps to *cells* in your notebook or source document.
 :::
 
 ::: fragment
-*All of these components can be authored and customized within notebook UI*
+*All of these components can be authored and customized within notebook UI or plain text qmd.*
 :::
+
+## Demonstrate all of the components
+
+
+
 
 ## Dashboard Deployment
 
@@ -259,9 +266,167 @@ Dashboards are typically just static HTML pages so can be deployed to any web se
 
 : {tbl-colwidths=\[35,65\]}
 
-## ![](images/icon-under-the-hood.svg){.title-icon}
+## Parameterized Dashboards
 
-# Posit and Python
+::: columns
+
+::: column
+![](images/stock-explorer-dashboard.png)
+:::
+
+::: column
+
+Add the parameters tag to the first cell
+(based on [papermill](https://papermill.readthedocs.io/en/latest/usage-parameterize.html)) :
+
+````python
+```{{python}}
+#| tags: [parameters]
+ticker = "BA"
+```
+````
+
+Use the `-P` command line option to vary the parameter:
+
+````bash
+quarto render dashboard.qmd -P ticker:GOOG
+````
+:::
+
+:::
+
+
+
+## Interactive Dashboards
+
+<https://quarto.org/docs/dashboards/interactivity/shiny-python/>
+
+::: columns
+
+
+::: {.column width=40%}
+
+- For interactive exploration, some dashboards can benefit from a live Python backend
+
+- To do this with Quarto Dashboards, add interactive [Shiny](https://shiny.posit.co/py/) components 
+
+-  _Note that this requires a server for deployment_
+
+:::
+
+::: {.column width=60%}
+![](images/shiny-homepage.png){.border}
+:::
+
+::: 
+
+## Hello, Shiny {.smaller}
+
+::: columns
+
+::: column
+````{.python .pymd code-line-numbers="|15-19|25-29|29|"}
+---
+title: "Penguin Bills"
+format: dashboard
+server: shiny
+---
+
+```{{python}}
+import seaborn as sns
+penguins = sns.load_dataset("penguins")
+```
+
+## {.sidebar}
+
+```{{python}}
+from shiny import render, ui
+ui.input_select("x", "Variable:",
+                choices=["bill_length_mm", "bill_depth_mm"])
+ui.input_select("dist", "Distribution:", choices=["hist", "kde"])
+ui.input_checkbox("rug", "Show rug marks", value = False)
+```
+
+## Column
+
+```{{python}}
+@render.plot
+def displot():
+    sns.displot(
+        data=penguins, hue="species", multiple="stack",
+        x=input.x(), rug=input.rug(),kind=input.dist())
+```
+````
+:::
+
+::: column
+![](images/hello-shiny-slide.png)
+:::
+
+
+:::
+
+##  {.no-line background-image="images/dashboards/shiny-penguins.png" background-size="contain"}
+
+## Shiny Deployment
+
+::: {style="margin-bottom: 1em;"}
+Shiny for Python applications are built on [Starlette](https://www.starlette.io) and [ASGI](https://asgi.readthedocs.io), and can deployed in server environments that support WebSockets and sticky sessions. 
+:::
+
+::: {.columns}
+
+::: column
+### Cloud
+
+- [shinyapps.io](https://shiny.posit.co/py/docs/deploy.html#deploy-to-shinyapps.io-cloud-hosting)
+- [Hugging Face](https://huggingface.co/docs/hub/spaces-sdks-docker-shiny)
+- [Roll your own](https://shiny.posit.co/py/docs/deploy.html#other-hosting-options)
+:::
+
+::: column
+### On-Prem
+
+- [Shiny Server](https://shiny.posit.co/py/docs/deploy.html#deploy-to-shiny-server-open-source) (open source)
+- [Posit Connect](https://shiny.posit.co/py/docs/deploy.html#deploy-to-posit-connect-commercial) (commercial)
+- [Roll your own](https://shiny.posit.co/py/docs/deploy.html#other-hosting-options)
+:::
+
+:::
+
+
+## Learning More 
+
+### Quarto v1.4 Pre-Release {style="font-size: 1em;"}
+
+::: {style="margin-top: 0.3em; font-size: 1em;"}
+<https://quarto.org/docs/download/prerelease.html>
+:::
+
+
+```{.bash style="font-size: 1.2em"}
+pip install git+https://github.com/quarto-dev/quarto-cli
+```
+
+
+### Resources {style="margin-top: 0.6em; font-size: 1em;"}
+
+::: {.border-0 style="font-size: 0.9em; margin-left: -17px;"}
+|                         |                                               |
+|-------------------------|-----------------------------------------------|
+| About Quarto            | <https://quarto.org/>                         |
+| Quarto Dashboards       | <https://quarto.org/docs/dashboards/>         |
+| Shiny for Python        | <https://shiny.posit.co/py/>                  |
+:::
+
+### Slides {style="margin-top: 0.4em; font-size: 1em;"}
+
+<https://jjallaire.quarto.pub/pydata-quarto-dashboards/>  
+
+
+
+
+# ![](images/icon-under-the-hood.svg){.title-icon} Posit and Python
 
 ## Posit, PBC
 
@@ -341,19 +506,13 @@ This is built into our charter, and our directors and officers have a fiduciary 
     :::
 :::
 
-## Thank You!
-
-### Slides: <https://jjallaire.quarto.pub/pydata-quarto-dashboards/> {style="margin-top: 1em; font-size: 1.2em;"}
-
-### Resources: {style="margin-top: 1.1em;"}
-
-::: border-0
-|                         |                                               |
-|-------------------------|-----------------------------------------------|
-| About Quarto            | <https://quarto.org/>                         |
-| Quarto Dashboards       | <https://quarto.org/docs/dashboards/>         |
-| Quarto v1.4 Pre-Release | <https://quarto.org/docs/download/prerelease> |
-| Shiny for Python        | <https://shiny.posit.co/py/>                  |
-:::
-
-### Questions? {style="margin-top: .9em;"}
+```{=html}
+<script type="text/javascript">
+// tweak headings in pymd
+document.querySelectorAll(".pymd span.co").forEach(el => {
+   if (!el.innerText.startsWith("#|")) {
+      el.style.fontWeight = 1000;
+   }
+});
+</script>
+```
