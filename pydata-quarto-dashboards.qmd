@@ -797,7 +797,7 @@ def displot():
 
 ##  {.no-line background-image="images/dashboards/shiny-penguins.png" background-size="contain"}
 
-##  {.no-line background-image="images/dashboards/retirement.png" background-size="contain"}
+##  {.no-line background-image="images/dashboards/retirement-retina.png" background-size="contain"}
 
 
 ## Shiny Deployment
