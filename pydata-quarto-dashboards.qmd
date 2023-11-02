@@ -243,13 +243,17 @@ dashboards from Jupyter Notebooks
 
 ## Navigation Bar and Pages
 
+![](images/navigation-toolbar.png)
 
-::: {style="margin-bottom: 2em;"}
+::: {style="margin-top: 0.7em;"}
 ````{.python .pymd}
----
+--- 
 title: "Palmer Penguins"
 author: "Cobblepot Analytics"
-logo: penguins.png
+format: 
+  dashboard:
+    logo: images/penguins.png
+    nav-buttons: [linkedin, twitter, github]
 ---
 
 # Bills
@@ -260,7 +264,6 @@ logo: penguins.png
 ````
 :::
 
-![](images/navigation-toolbar.png){.fragment}
 
 
 ## Sidebars: Page Level {.component-slide}
