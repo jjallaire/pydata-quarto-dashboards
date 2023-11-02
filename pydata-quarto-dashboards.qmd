@@ -21,33 +21,28 @@ format:
 
 ## Hello!
 
-::: incremental
 -   J.J. Allaire: Founder & CEO of Posit, PBC
 
--   RStudio [⥵]{style="font-size: 1.5em;"} Posit (July 2022)
+-   RStudio [⥵]{style="font-size: 1.1em;"} Posit (July 2022)
 
--   Why? Become a multi-lingual data science tools company
-
--   How? Open source and commercial software for PyData
+-   Goal: Become a multi-language data science tools company
 
 -   Early in the journey, but have made lots of investments already
 
 -   Today I'll share some of our work and talk about what's next
-:::
+
 
 ## Overview
 
--   What is Quarto?
+-   Quarto Basics & Workflow
 
 -   Introducing Quarto Dashboards
-
--   Dashboards with Jupyter in Depth
 
 -   Posit and Python: History and Future
 
 # ![](images/icon-intro.svg){.title-icon} Quarto Basics
 
-## What is Quarto? --- <https://quarto.org>
+## Quarto --- <https://quarto.org>
 
 ::: columns
 ::: column
@@ -127,12 +122,12 @@ quarto preview notebook.qmd --to pdf
 
 ##  {.no-line background-image="images/jupyterlab.png" background-size="contain"}
 
-## Plain Text Notebooks w/`.qmd` Files {.no-line}
+## Plain Text Notebooks w/`.qmd` Files
 
 ::: {layout="[[40,50]]"}
 ::: smaller
 ::: {style="padding-top:0.65em;"}
-```` {.markdown filename="penguins.qmd" style="overflow-y: hidden" code-line-numbers="|1-7|9-16|18-20|22-31|23-24"}
+```` {.markdown filename="penguins.qmd" style="overflow-y: hidden" code-line-numbers="|1-7|9-16|18-20|22-31"}
 ---
 title: "Palmer Penguins"
 author: Norah Jones
@@ -236,20 +231,229 @@ dashboards from Jupyter Notebooks
 
 ## Dashboard Components
 
-::: incremental
 1)  **Navigation Bar and Pages** --- Icon, title, and author along with links to sub-pages (if more than one page is defined). 
 
-2)  **Sidebars, Rows, Columns, and Tabsets** --- Rows and columns using markdown heading (with optional attributes to control height, width, etc.). Sidebars for interactive inputs. Tabsets to further divide content.
+2)  **Sidebars, Rows & Columns, and Tabsets** --- Rows and columns using markdown heading (with optional attributes to control height, width, etc.). Sidebars for interactive inputs. Tabsets to further divide content.
 
 3)  **Cards (Plots, Tables, Value Boxes, Content)** --- Cards are containers for cell outputs and free form markdown text. The content of cards typically maps to *cells* in your notebook or source document.
-:::
 
 ::: fragment
 *All of these components can be authored and customized within notebook UI or plain text qmd.*
 :::
 
-## Navigation and Pages
+## Navigation Bar and Pages
 
+
+::: {style="margin-bottom: 2em;"}
+````{.python .pymd}
+---
+title: "Palmer Penguins"
+author: "Cobblepot Analytics"
+logo: penguins.png
+---
+
+# Bills
+
+# Flippers
+
+# Data
+````
+:::
+
+![](images/navigation-toolbar.png){.fragment}
+
+
+## Sidebars: Page Level {.component-slide}
+
+::: columns
+
+
+::: {.column}
+
+````{.python .pymd style="margin-top: 45px;"}
+---
+title: "Sidebar"
+format: dashboard
+---
+    
+# Page 1
+
+## {.sidebar}
+
+```{{python}}
+```
+
+## Column 
+
+```{{python}}
+```
+
+```{{python}}
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/chart-input-sidebar.png)
+:::
+
+
+:::
+
+
+
+## Sidebars: Global {.compontent-slide}
+
+
+::: columns
+
+
+::: {.column}
+
+````{.python .pymd style="margin-top: 45px;"}
+---
+title: "Global Sidebar"
+format: dashboard
+---
+    
+# {.sidebar}
+
+Sidebar content (e.g. inputs)
+
+# Plot
+
+```{{python}}
+```
+
+# Data
+
+```{{python}}
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/global-sidebar.png){width=80%}
+:::
+
+
+:::
+
+## Layout: Rows {.component-slide}
+
+::: columns
+
+::: {.column style="margin-top: 65px;"}
+````{.python .pymd}
+---
+title: "Focal (Top)"
+format: dashboard
+---
+    
+## Row {height=70%}
+
+```{{python}}
+```
+
+## Row {height=30%}
+
+```{{python}}
+```
+
+```{{python}}
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/chart-focal-top.png){width=90%}
+:::
+
+:::
+
+##  {.no-line background-image="images/dashboards/customer-churn.png" background-size="contain"}
+
+
+
+## Layout: Columns {.component-slide}
+
+
+::: columns
+
+::: {.column style="margin-top: 40px;"}
+````{.python .pymd}
+---
+title: "Focal (Top)"
+format: 
+  dashboard:
+    orientation: columns
+---
+    
+## Column {width=60%}
+
+```{{python}}
+```
+
+## Column {width=40%}
+
+```{{python}}
+```
+
+```{{python}}
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/chart-focal-left.png)
+:::
+
+:::
+
+
+
+##  {.no-line background-image="images/dashboards/housing-market.png" background-size="contain"}
+
+
+
+
+
+## Tabsets {.component-slide}
+
+::: columns
+
+::: {.column style="margin-top: 45px;"}
+````{.python .pymd}
+---
+title: "Palmer Penguins"
+format: dashboard
+---
+    
+## Row
+
+```{{python}}
+```
+
+## Row {.tabset}
+
+```{{python}}
+#| title: Chart 2
+```
+
+```{{python}}
+#| title: Chart 3
+```
+````
+:::
+
+::: {.column .fragment}
+![](images/chart-tabset-row.png){width="87%"}
+:::
+
+
+:::
+
+##  {.no-line background-image="images/dashboards/mynorfolk.png" background-size="contain"}
 
 
 
@@ -276,13 +480,13 @@ px.scatter(
 :::
 
 ::: {.column .fragment}
-![](images/plotly-interactive.png)
+![](images/plotly-interactive.png){width="85%"}
 :::
 
 :::
 
 
-::: columns
+::: {.columns}
 
 ::: {.column .fragment .smaller}
 [ipyleaflet](https://ipyleaflet.readthedocs.io)
@@ -298,10 +502,12 @@ Map(basemap=basemap_to_tiles(basemaps.OpenStreetMap.Mapnik),
 :::
 
 ::: {.column .fragment}
-![](images/leaflet-card-title-padding.png)
+![](images/leaflet-card-title-padding.png){width="85%"}
 :::
 
 :::
+
+
 
 
 ## Tables {#component-tables .component-slide}
@@ -363,8 +569,8 @@ show(penguins)
 
 ::: columns
 
-::: {.column .fragment width="45%"}
-````{.python .pymd code-line-numbers="|4-8|15-17"}
+::: {.column width="45%"}
+````{.python .pymd style="margin-top: 45px;"}
 ## Row
 
 ```{{python}}
@@ -383,19 +589,11 @@ dict(value = change['amount'],
      icon = change['icon'],
      color = change['color']) 
 ```
-
-```{{python}}
-#| component: valuebox
-#| title: "Percent Change"
-dict(icon = "percent",
-     color = "light",
-     value = change['percent']) 
-```
 ````
 :::
 
 ::: {.column .fragment width="55%"}
-![](images/value-box-app.png){.border width="90%"}
+![](images/value-box-app.png){.border width="80%"}
 :::
 
 
@@ -507,7 +705,7 @@ Dashboards are typically just static HTML pages so can be deployed to any web se
 
 ::: column
 
-Add the parameters tag to the first cell
+Add a parameters tag to the first cell
 (based on [papermill](https://papermill.readthedocs.io/en/latest/usage-parameterize.html)) :
 
 ````python
@@ -665,7 +863,7 @@ pip install git+https://github.com/quarto-dev/quarto-cli
 ::: {.column width="50%"}
 Founded 14 years ago to create open source software for data science.
 
-Posit is a [Public Benefit Corporation](https://en.wikipedia.org/wiki/Benefit_corporation) with a mission to create free and open source software for *data science*, *scientific research*, and *technical communication*.
+Posit is a [Public Benefit Corporation](https://en.wikipedia.org/wiki/Benefit_corporation) with a mission to create open source software for *data science*, *scientific research*, and *technical communication*.
 
 This is built into our charter, and our directors and officers have a fiduciary duty to pursue these public benefits along with balancing the needs of all our stakeholders.
 :::
@@ -690,7 +888,7 @@ This is built into our charter, and our directors and officers have a fiduciary 
 ## Code First Data Science
 
 ::: incremental
--   *Code First Data Science* means doing flexible, iterative, re-usable, inspectable, and reproducible data science with code.
+-   *Code First Data Science* means doing flexible, re-usable, inspectable, and reproducible data science with code.
 
 -   This in contrast to many BI Tools which suffer from:
 
