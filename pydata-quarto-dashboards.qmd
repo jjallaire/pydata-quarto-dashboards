@@ -15,6 +15,7 @@ format:
     menu: false
     pdf-separate-fragments: true
     theme: [default, theme.scss]
+    embed-resources: true
 # notebook: open -na Google\ Chrome --args --window-size=912,1060 --new-window
 # output: open -na Google\ Chrome --args --window-size=838,995 --new-window --user-data-dir=/Users/jjallaire/Documents/Chrome-Output
 ---
@@ -570,7 +571,7 @@ show(penguins)
 ::: columns
 
 ::: {.column width="45%"}
-````{.python .pymd style="margin-top: 45px;"}
+````{.python .pymd style="margin-top: 45px;" code-line-numbers="|3-9|14-17|"}
 ## Row
 
 ```{{python}}
@@ -611,8 +612,8 @@ dict(value = change['amount'],
 
 ::: columns
 
-::: {.column .fragment}
-````{.python .pymd}
+::: {.column width="55%"}
+````{.python .pymd code-line-numbers="|17-22|"}
 ## Column
 
 ```{{python}}
@@ -638,8 +639,8 @@ dataset at <https://www.gapminder.org/data/>.
 ````
 :::
 
-::: {.column .fragment}
-![](images/text-content-column.png){width="85%"}
+::: {.column .fragment width="45%"}
+![](images/text-content-column.png){width="100%"}
 :::
 
 :::
