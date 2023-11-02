@@ -800,7 +800,6 @@ def displot():
 
 ##  {.no-line background-image="images/dashboards/shiny-penguins.png" background-size="contain"}
 
-##  {.no-line background-image="images/dashboards/retirement.png" background-size="contain"}
 
 
 ## Shiny Deployment
@@ -828,6 +827,13 @@ Shiny for Python applications are built on [Starlette](https://www.starlette.io)
 :::
 
 :::
+
+::: {.fragment style="margin-top: 0.7em;"}
+Alternatively, deploy serverless using [Pyodide](https://pyodide.org/). See the [Retirement Simulation](https://github.com/wch/retirement-simulation-dashboard) example for details.
+:::
+
+##  {.no-line background-image="images/dashboards/retirement.png" background-size="contain"}
+
 
 
 ## Learning More 
