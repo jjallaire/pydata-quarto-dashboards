@@ -1,0 +1,4 @@
+- source: pydata-quarto-dashboards.qmd
+  quarto-pub:
+    - id: 4cb190ef-24c3-4d32-897c-6c0847a28f7d
+      url: 'https://jjallaire.quarto.pub/pydata-quarto-dashboards'

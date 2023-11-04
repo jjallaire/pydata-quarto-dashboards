@@ -835,38 +835,6 @@ Alternatively, deploy serverless using [Pyodide](https://pyodide.org/). See the 
 ##  {.no-line background-image="images/dashboards/retirement.png" background-size="contain"}
 
 
-
-## Learning More 
-
-### Quarto v1.4 Pre-Release {style="font-size: 1em;"}
-
-::: {style="margin-top: 0.3em; font-size: 1em;"}
-<https://quarto.org/docs/download/prerelease.html>
-:::
-
-
-```{.bash style="font-size: 1.2em"}
-pip install git+https://github.com/quarto-dev/quarto-cli
-```
-
-
-### Resources {style="margin-top: 0.6em; font-size: 1em;"}
-
-::: {.border-0 style="font-size: 0.9em; margin-left: -17px;"}
-|                         |                                               |
-|-------------------------|-----------------------------------------------|
-| About Quarto            | <https://quarto.org/>                         |
-| Quarto Dashboards       | <https://quarto.org/docs/dashboards/>         |
-| Shiny for Python        | <https://shiny.posit.co/py/>                  |
-:::
-
-### Slides {style="margin-top: 0.4em; font-size: 1em;"}
-
-<https://jjallaire.github.io/pydata-quarto-dashboards/>  
-
-
-
-
 # ![](images/icon-under-the-hood.svg){.title-icon} Posit and Python
 
 ## Posit, PBC
@@ -897,23 +865,6 @@ This is built into our charter, and our directors and officers have a fiduciary 
 -   Our core aspiration is to be a durable, trustworthy provider of open source software for science.
 :::
 
-## Code First Data Science
-
-::: incremental
--   *Code First Data Science* means doing flexible, re-usable, inspectable, and reproducible data science with code.
-
--   This in contrast to many BI Tools which suffer from:
-
-    ::: nonincremental
-    -   No single source of truth
-    -   Difficulty tracking changes and auditing work
-    -   Awkard to extend and reproduce work
-    -   Constraints on how you analyze your data and present insights
-    :::
-
--   Our goal is to make doing data science with code as straightforward and seamless as possible.
-:::
-
 ## PyData Projects
 
 |                                                                           |                                            |
@@ -931,21 +882,35 @@ This is built into our charter, and our directors and officers have a fiduciary 
 -   Working on standards for scientific notebook publishing in [NotebooksNow](https://data.agu.org/notebooks-now/)
 :::
 
-## What Next?
+## Learning More 
 
-::: incremental
--   Continue working on these and other open source packages (all of our major open source initiatives are now multi-language)
+### Quarto v1.4 Pre-Release {style="font-size: 1em;"}
 
--   Invest in PyData tools ecosystem (already have Quarto and Shiny extensions for Jupyter and VS Code)
-
--   Work collaboratively with the Python community to realize the potential of code first data science:
-
-    ::: nonincremental
-    -   What works well that we should build on?
-    -   What are the frustrations and failure modes?
-    -   What do people aspire to but can't do easily right now?
-    :::
+::: {style="margin-top: 0.3em; font-size: 1em;"}
+<https://quarto.org/docs/download/prerelease.html>
 :::
+
+
+```{.bash style="font-size: 1.2em"}
+pip install git+https://github.com/quarto-dev/quarto-cli
+```
+
+
+### Resources {style="margin-top: 0.6em; font-size: 1em;"}
+
+::: {.border-0 style="font-size: 0.9em; margin-left: -17px;"}
+|                         |                                               |
+|-------------------------|-----------------------------------------------|
+| About Quarto            | <https://quarto.org/>                         |
+| Quarto Dashboards       | <https://quarto.org/docs/dashboards/>         |
+| Shiny for Python        | <https://shiny.posit.co/py/>                  |
+:::
+
+### Slides {style="margin-top: 0.4em; font-size: 1em;"}
+
+<https://jjallaire.github.io/pydata-quarto-dashboards/>  
+
+
 
 ```{=html}
 <script type="text/javascript">
